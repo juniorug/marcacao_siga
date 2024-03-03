@@ -8,6 +8,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+tem_horario = False
 
 def start_chrome():
     #driver_path = 'driver/chromedriver'  # ou o caminho para o driver do navegador que você está usando
@@ -140,6 +141,7 @@ def avanca_para_ultima_pagina():
 
 
 def valida_message_error(local):
+    global tem_horario
     # Aguardar até que o elemento seja visível
     error_message_div = WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.CLASS_NAME, 'error-message'))
@@ -150,12 +152,14 @@ def valida_message_error(local):
     # Imprimir a mensagem com base na presença do elemento
     if h5_element.text == "Não existem horários de marcação disponíveis para os critérios selecionados.":
         print("Não há horários em " + local)
+        tem_horario = False
     else:
         print("Existe horário em " + local)
+        tem_horario = True
 
 
 # Cenários de teste
-def verifica_lisboa(p_distrito, p_localidade):
+def verifica_localidade(p_distrito, p_localidade):
     try:
         print('------ ' + p_distrito + ' / ' + p_localidade + ' ------')
         start_chrome()
@@ -173,16 +177,17 @@ def verifica_lisboa(p_distrito, p_localidade):
         close_chrome()
 
 
-# Start Lisboa / TODAS AS LOCALIDADES
-driver = start_chrome()
-verifica_lisboa('COIMBRA', 'COIMBRA') #verifica_lisboa('LISBOA', 'ALL PLACES')
+while not tem_horario:
+    # Start Lisboa / TODAS AS LOCALIDADES
+    driver = start_chrome()
+    verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
 
 
 # # Start Lisboa / Marvila
 # driver = start_chrome()
-# verifica_lisboa('LISBOA', 'Loja de Cidadão Marvila', 'Marvila')
+# verifica_localidade('LISBOA', 'Loja de Cidadão Marvila', 'Marvila')
 #
 # # Start Coimbra / Loja Cidadão
 # driver = start_chrome()
-# verifica_lisboa('COIMBRA', 'Loja de Cidadão Coimbra', 'Coimbra')
+# verifica_localidade('COIMBRA', 'Loja de Cidadão Coimbra', 'Coimbra')
 
