@@ -41,7 +41,7 @@ def iniciar_agendamento():
     # Clicar no botão "Iniciar"
     iniciar_button.click()
 
-    print("Botão 'Iniciar' clicado com sucesso!")
+    # print("Botão 'Iniciar' clicado com sucesso!")
 
 
 def insere_texto_pesquisa():
@@ -53,7 +53,7 @@ def insere_texto_pesquisa():
     # Inserir o texto "renovação de residencia" no campo de pesquisa
     pesquisa_input.send_keys("Autorização de residência") #Residence permit
 
-    print("Texto inserido com sucesso no campo de pesquisa!")
+    # print("Texto inserido com sucesso no campo de pesquisa!")
 
 
 def seleciona_pesquisar():
@@ -65,7 +65,7 @@ def seleciona_pesquisar():
     # Clicar no botão de pesquisa
     pesquisar_assunto_button.click()
 
-    print("Botão de pesquisa clicado com sucesso!")
+    # print("Botão de pesquisa clicado com sucesso!")
 
 
 def seleciona_resultado_pesquisa():
@@ -77,7 +77,7 @@ def seleciona_resultado_pesquisa():
     # Clicar no botão de seleção
     selecionar_button.click()
 
-    print("Botão selecionar clicado com sucesso!")
+    # print("Botão selecionar clicado com sucesso!")
 
 
 def avanca_pagina_intermediaria():
@@ -90,7 +90,7 @@ def avanca_pagina_intermediaria():
     # Clicar no botão 'proximoButton'
     next_button.click()
 
-    print("Botão 'Próximo' clicado com sucesso!")
+    # print("Botão 'Próximo' clicado com sucesso!")
 
 
 def seleciona_distrito(p_distrito):
@@ -102,8 +102,7 @@ def seleciona_distrito(p_distrito):
     select = Select(id_distrito_select)
     select.select_by_visible_text(p_distrito)
 
-    print('Opção para distrito ' + p_distrito + ' selecionada com sucesso!'
-          )
+    # print('Opção para distrito ' + p_distrito + ' selecionada com sucesso!')
 
 
 def seleciona_localidade(p_localidade):
@@ -114,8 +113,7 @@ def seleciona_localidade(p_localidade):
     select = Select(id_localidade)
     time.sleep(1)
     select.select_by_visible_text(p_localidade)
-    print('Opção para localidade ' + p_localidade + ' selecionada com sucesso!'
-          )
+    # print('Opção para localidade ' + p_localidade + ' selecionada com sucesso!')
 
 
 def seleciona_local_atendimento(p_local_atendimento):
@@ -128,7 +126,7 @@ def seleciona_local_atendimento(p_local_atendimento):
     time.sleep(1)
     select_local_atendimento.select_by_visible_text(p_local_atendimento)
 
-    print('Opção local de atendimento' + p_local_atendimento + ' selecionada com sucesso!')
+    # print('Opção local de atendimento' + p_local_atendimento + ' selecionada com sucesso!')
 
 
 def avanca_para_ultima_pagina():
@@ -138,7 +136,7 @@ def avanca_para_ultima_pagina():
 
     # Clicar no botão 'proximoButton'
     last_button.click()
-    print("Botão 'Próximo' clicado com sucesso!")
+    # print("Botão 'Próximo' clicado com sucesso!")
 
 
 def valida_message_error(local):
@@ -157,6 +155,7 @@ def valida_message_error(local):
     else:
         print("Existe horário em " + local)
         tem_horario = True
+    time.sleep(3)
 
 
 # Cenários de teste
@@ -183,7 +182,7 @@ while not tem_horario:
     # Start Lisboa / TODAS AS LOCALIDADES
     start_siga(driver)
     verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
-close_chrome()
+# close_chrome()
 
 # # Start Lisboa / Marvila
 # driver = start_chrome()
