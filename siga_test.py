@@ -19,14 +19,15 @@ def start_chrome():
 
     # Inicializar o navegador Chrome
     driver = webdriver.Chrome(options=options)
+    return start_siga(driver)
 
+def start_siga(driver):
     # URL do site
     url = 'https://siga.marcacaodeatendimento.pt/Marcacao/MarcacaoInicio'
 
     # Abrir a URL no navegador
     driver.get(url)
     return driver
-
 
 def close_chrome():
     driver.quit()
@@ -160,28 +161,29 @@ def valida_message_error(local):
 
 # Cenários de teste
 def verifica_localidade(p_distrito, p_localidade):
-    try:
-        print('------ ' + p_distrito + ' / ' + p_localidade + ' ------')
-        start_chrome()
-        iniciar_agendamento()
-        insere_texto_pesquisa()
-        seleciona_pesquisar()
-        seleciona_resultado_pesquisa()
-        avanca_pagina_intermediaria()
-        seleciona_distrito(p_distrito)
-        seleciona_localidade(p_localidade)
-        avanca_para_ultima_pagina()
-        valida_message_error(p_localidade)
-        print('')
-    finally:
-        close_chrome()
+    # try:
+    print('------ ' + p_distrito + ' / ' + p_localidade + ' ------')
+    # start_chrome()
+    iniciar_agendamento()
+    insere_texto_pesquisa()
+    seleciona_pesquisar()
+    seleciona_resultado_pesquisa()
+    avanca_pagina_intermediaria()
+    seleciona_distrito(p_distrito)
+    seleciona_localidade(p_localidade)
+    avanca_para_ultima_pagina()
+    valida_message_error(p_localidade)
+    print('')
+    # finally:
+        # close_chrome()
 
 
+driver = start_chrome()
 while not tem_horario:
     # Start Lisboa / TODAS AS LOCALIDADES
-    driver = start_chrome()
+    start_siga(driver)
     verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
-
+close_chrome()
 
 # # Start Lisboa / Marvila
 # driver = start_chrome()
