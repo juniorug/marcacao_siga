@@ -153,16 +153,18 @@ def valida_message_error(local):
         print("Não há horários em " + local)
         tem_horario = False
     else:
-        print("Existe horário em " + local)
+        print(">>>>>>>>>>>>>>>>>>>>>> Existe horário em " + local)
         tem_horario = True
+        while True:
+           time.sleep(5)
     time.sleep(3)
 
 
 # Cenários de teste
-def verifica_localidade(p_distrito, p_localidade):
+def verifica_localidade(p_distrito, p_localidade, p_local_atendimento):
     # try:
-    print('------ ' + p_distrito + ' / ' + p_localidade + ' ------')
-    # start_chrome()
+    print('------ ' + p_distrito + ' / ' + p_localidade + ' / ' + p_local_atendimento + ' ------')
+    start_siga(driver)
     iniciar_agendamento()
     insere_texto_pesquisa()
     seleciona_pesquisar()
@@ -170,6 +172,7 @@ def verifica_localidade(p_distrito, p_localidade):
     avanca_pagina_intermediaria()
     seleciona_distrito(p_distrito)
     seleciona_localidade(p_localidade)
+    seleciona_local_atendimento(p_local_atendimento)
     avanca_para_ultima_pagina()
     valida_message_error(p_localidade)
     print('')
@@ -177,11 +180,36 @@ def verifica_localidade(p_distrito, p_localidade):
         # close_chrome()
 
 
+lista_de_locais = [
+    ('AVEIRO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('AVEIRO','AVEIRO','Loja de Cidadão Aveiro'),
+    ('AVEIRO','ESPINHO','CRC Espinho'),
+    ('BRAGANÇA','BRAGANÇA','ER Bragança'),
+    ('CASTELO BRANCO','CASTELO BRANCO','Loja de Cidadão Castelo Branco'),
+    ('COIMBRA','COIMBRA','Loja de Cidadão Coimbra'),
+    ('ÉVORA','ÉVORA','ER Évora'),
+    ('FARO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('FARO','PORTIMÃO','CRC Portimão'),
+    ('FARO','TAVIRA','Loja de Cidadão Tavira'),
+    ('GUARDA','GUARDA','Loja de Cidadão Guarda'),
+    ('ILHA DO FAIAL','HORTA','CRCPCom Horta'),
+    ('LEIRIA','LEIRIA','Loja de Cidadão Leiria'),
+    ('LISBOA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('LISBOA','CASCAIS','CRC Cascais'),
+    ('LISBOA','LISBOA','DIC Boa Hora'),
+    ('LISBOA','LISBOA','DIC Lisboa (Expo)'),
+    ('LISBOA','LISBOA','Loja de Cidadão Saldanha'),
+    ('PORTALEGRE','PORTALEGRE','ER Portalegre'),
+    ('SANTARÉM','SANTARÉM','ER Santarém'),
+    ('VIANA DO CASTELO','VIANA DO CASTELO','CRC Viana do Castelo')
+]
+
 driver = start_chrome()
 while not tem_horario:
     # Start Lisboa / TODAS AS LOCALIDADES
-    start_siga(driver)
-    verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
+    for distrito, localidade, local_atendimento in lista_de_locais:
+        verifica_localidade(distrito, localidade, local_atendimento)
+        # verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
 # close_chrome()
 
 # # Start Lisboa / Marvila
@@ -191,4 +219,5 @@ while not tem_horario:
 # # Start Coimbra / Loja Cidadão
 # driver = start_chrome()
 # verifica_localidade('COIMBRA', 'Loja de Cidadão Coimbra', 'Coimbra')
+
 
