@@ -162,7 +162,6 @@ def valida_message_error(local):
 
 # Cenários de teste
 def verifica_localidade(p_distrito, p_localidade, p_local_atendimento):
-    # try:
     print('------ ' + p_distrito + ' / ' + p_localidade + ' / ' + p_local_atendimento + ' ------')
     start_siga(driver)
     iniciar_agendamento()
@@ -176,8 +175,6 @@ def verifica_localidade(p_distrito, p_localidade, p_local_atendimento):
     avanca_para_ultima_pagina()
     valida_message_error(p_localidade)
     print('')
-    # finally:
-        # close_chrome()
 
 
 lista_de_locais = [
@@ -204,20 +201,11 @@ lista_de_locais = [
     ('VIANA DO CASTELO','VIANA DO CASTELO','CRC Viana do Castelo')
 ]
 
-driver = start_chrome()
-while not tem_horario:
-    # Start Lisboa / TODAS AS LOCALIDADES
-    for distrito, localidade, local_atendimento in lista_de_locais:
-        verifica_localidade(distrito, localidade, local_atendimento)
-        # verifica_localidade('COIMBRA', 'COIMBRA') #verifica_localidade('LISBOA', 'ALL PLACES')
-# close_chrome()
+try:
+    driver = start_chrome()
+    while not tem_horario:
+        for distrito, localidade, local_atendimento in lista_de_locais:
+            verifica_localidade(distrito, localidade, local_atendimento)
 
-# # Start Lisboa / Marvila
-# driver = start_chrome()
-# verifica_localidade('LISBOA', 'Loja de Cidadão Marvila', 'Marvila')
-#
-# # Start Coimbra / Loja Cidadão
-# driver = start_chrome()
-# verifica_localidade('COIMBRA', 'Loja de Cidadão Coimbra', 'Coimbra')
-
-
+finally:
+    close_chrome()
