@@ -186,26 +186,37 @@ lista_de_locais = [
     ('COIMBRA','COIMBRA','Loja de Cidadão Coimbra'),
     ('ÉVORA','ÉVORA','ER Évora'),
     ('FARO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('FARO','FARO','Loja de Cidadão Faro'),
     ('FARO','PORTIMÃO','CRC Portimão'),
     ('FARO','TAVIRA','Loja de Cidadão Tavira'),
     ('GUARDA','GUARDA','Loja de Cidadão Guarda'),
     ('ILHA DO FAIAL','HORTA','CRCPCom Horta'),
+    ('LEIRIA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
     ('LEIRIA','LEIRIA','Loja de Cidadão Leiria'),
+    ('LEIRIA','MARINHA GRANDE','Registos Marinha Grande'),
     ('LISBOA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
     ('LISBOA','CASCAIS','CRC Cascais'),
     ('LISBOA','LISBOA','DIC Boa Hora'),
     ('LISBOA','LISBOA','DIC Lisboa (Expo)'),
+    ('LISBOA','LISBOA','Loja de Cidadão Marvila'),
     ('LISBOA','LISBOA','Loja de Cidadão Saldanha'),
+    ('LISBOA','ODIVELAS','Loja de Cidadão Odivelas'),
     ('PORTALEGRE','PORTALEGRE','ER Portalegre'),
+    ('PORTO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('PORTO','PORTO','Loja de Cidadão Porto'),
+    ('PORTO','POVOA DE VARZIM','ER Póvoa de Varzim'),
     ('SANTARÉM','SANTARÉM','ER Santarém'),
-    ('VIANA DO CASTELO','VIANA DO CASTELO','CRC Viana do Castelo')
+    ('VIANA DO CASTELO','VIANA DO CASTELO','CRC Viana do Castelo'),
+    ('VILA REAL','VILA REAL','Loja de Cidadão Vila Real'),
+    ('VISEU','VISEU','Loja de Cidadão Viseu')
 ]
 
-try:
-    driver = start_chrome()
-    while not tem_horario:
-        for distrito, localidade, local_atendimento in lista_de_locais:
-            verifica_localidade(distrito, localidade, local_atendimento)
+while True:
+    try:
+        driver = start_chrome()
+        while not tem_horario:
+            for distrito, localidade, local_atendimento in lista_de_locais:
+                verifica_localidade(distrito, localidade, local_atendimento)
 
-finally:
-    close_chrome()
+    finally:
+        close_chrome()
