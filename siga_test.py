@@ -4,6 +4,8 @@ import unittest
 import self as self
 import winsound
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
@@ -223,7 +225,11 @@ while True:
         driver = start_chrome()
         while not tem_horario:
             for distrito, localidade, local_atendimento in lista_de_locais:
-                verifica_localidade(distrito, localidade, local_atendimento)
-
+                try: 
+                    verifica_localidade(distrito, localidade, local_atendimento)
+                except (RuntimeError, TimeoutException, NoSuchElementException) as err:
+                    print('Handling error:', err)
+                    # continue
+                    pass
     finally:
         close_chrome()
