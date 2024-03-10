@@ -2,6 +2,7 @@ import time
 import unittest
 
 import self as self
+import winsound
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -10,6 +11,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 tem_horario = False
 
+def beep():
+    frequency = 2500  # Set Frequency To 2500 Hertz
+    duration = 5000  # Set Duration To 1000 ms == 1 second
+    winsound.Beep(frequency, duration)
 def start_chrome():
     #driver_path = 'driver/chromedriver'  # ou o caminho para o driver do navegador que você está usando
     #driver_path = 'C:/driver/chromedriver'  # ou o caminho para o driver do navegador que você está usando
@@ -153,9 +158,10 @@ def valida_message_error(local):
         print("Não há horários em " + local)
         tem_horario = False
     else:
-        print(">>>>>>>>>>>>>>>>>>>>>> Existe horário em " + local)
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EXISTE HORÁRIO EM " + local)
         tem_horario = True
         while True:
+           beep()
            time.sleep(5)
     time.sleep(3)
 
@@ -163,6 +169,7 @@ def valida_message_error(local):
 # Cenários de teste
 def verifica_localidade(p_distrito, p_localidade, p_local_atendimento):
     print('------ ' + p_distrito + ' / ' + p_localidade + ' / ' + p_local_atendimento + ' ------')
+    # beep()
     start_siga(driver)
     iniciar_agendamento()
     insere_texto_pesquisa()
