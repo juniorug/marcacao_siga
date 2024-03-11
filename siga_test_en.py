@@ -1,4 +1,5 @@
 import time
+import unittest
 
 import self as self
 import winsound
@@ -57,7 +58,7 @@ def insere_texto_pesquisa():
     )
 
     # Inserir o texto "renovação de residencia" no campo de pesquisa
-    pesquisa_input.send_keys("Autorização de residência") #Residence permit
+    pesquisa_input.send_keys("Residence permit") #Residence permit
 
     # print("Texto inserido com sucesso no campo de pesquisa!")
 
@@ -90,7 +91,7 @@ def avanca_pagina_intermediaria():
     # Aguardar até que o botão 'proximoButton' seja visível
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     next_button = WebDriverWait(driver, 20).until(
-        EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Próximo')]"))
+        EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Next')]"))
     )
 
     # Clicar no botão 'proximoButton'
@@ -137,7 +138,7 @@ def seleciona_local_atendimento(p_local_atendimento):
 
 def avanca_para_ultima_pagina():
     last_button = WebDriverWait(driver, 20).until(
-        EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Próximo')]"))
+        EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Next')]"))
     )
 
     # Clicar no botão 'proximoButton'
@@ -155,7 +156,7 @@ def valida_message_error(local):
     h5_element = error_message_div.find_element(By.TAG_NAME, 'h5')
 
     # Imprimir a mensagem com base na presença do elemento
-    if h5_element.text == "Não existem horários de marcação disponíveis para os critérios selecionados.":
+    if h5_element.text == "There are no appointment shedules available for the selected criteria.":
         print("Não há horários em " + local)
         tem_horario = False
     else:
@@ -186,23 +187,23 @@ def verifica_localidade(p_distrito, p_localidade, p_local_atendimento):
 
 
 lista_de_locais = [
-    ('AVEIRO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('AVEIRO','ALL PLACES','All attendance places'),
     ('AVEIRO','AVEIRO','Loja de Cidadão Aveiro'),
     ('AVEIRO','ESPINHO','CRC Espinho'),
     ('BRAGANÇA','BRAGANÇA','ER Bragança'),
     ('CASTELO BRANCO','CASTELO BRANCO','Loja de Cidadão Castelo Branco'),
     ('COIMBRA','COIMBRA','Loja de Cidadão Coimbra'),
     ('ÉVORA','ÉVORA','ER Évora'),
-    ('FARO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('FARO','ALL PLACES','All attendance places'),
     ('FARO','FARO','Loja de Cidadão Faro'),
     ('FARO','PORTIMÃO','CRC Portimão'),
     ('FARO','TAVIRA','Loja de Cidadão Tavira'),
     ('GUARDA','GUARDA','Loja de Cidadão Guarda'),
     ('ILHA DO FAIAL','HORTA','CRCPCom Horta'),
-    ('LEIRIA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('LEIRIA','ALL PLACES','All attendance places'),
     ('LEIRIA','LEIRIA','Loja de Cidadão Leiria'),
     ('LEIRIA','MARINHA GRANDE','Registos Marinha Grande'),
-    ('LISBOA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('LISBOA','ALL PLACES','All attendance places'),
     ('LISBOA','CASCAIS','CRC Cascais'),
     ('LISBOA','LISBOA','DIC Boa Hora'),
     ('LISBOA','LISBOA','DIC Lisboa (Expo)'),
@@ -210,7 +211,7 @@ lista_de_locais = [
     ('LISBOA','LISBOA','Loja de Cidadão Saldanha'),
     ('LISBOA','ODIVELAS','Loja de Cidadão Odivelas'),
     ('PORTALEGRE','PORTALEGRE','ER Portalegre'),
-    ('PORTO','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
+    ('PORTO','ALL PLACES','All attendance places'),
     ('PORTO','PORTO','Loja de Cidadão Porto'),
     ('PORTO','POVOA DE VARZIM','ER Póvoa de Varzim'),
     ('SANTARÉM','SANTARÉM','ER Santarém'),
