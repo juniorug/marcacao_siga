@@ -198,7 +198,7 @@ lista_de_locais = [
     ('FARO','PORTIMÃO','CRC Portimão'),
     ('FARO','TAVIRA','Loja de Cidadão Tavira'),
     ('GUARDA','GUARDA','Loja de Cidadão Guarda'),
-    ('ILHA DO FAIAL','HORTA','CRCPCom Horta'),
+    #('ILHA DO FAIAL','HORTA','CRCPCom Horta'),
     ('LEIRIA','TODAS AS LOCALIDADES','Todos os Locais de Atendimento'),
     ('LEIRIA','LEIRIA','Loja de Cidadão Leiria'),
     ('LEIRIA','MARINHA GRANDE','Registos Marinha Grande'),
